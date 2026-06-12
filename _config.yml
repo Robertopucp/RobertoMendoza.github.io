@@ -23,7 +23,7 @@ repository               : "Robertopucp/RobertoMendoza.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "image_personal.png"
   name             : "Roberto Mendoza"
   pronouns         : # example: "she/her"  
   bio              : "Economist - Data Scientist - Research"
