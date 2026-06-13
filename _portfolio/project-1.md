@@ -36,11 +36,3 @@ I then estimate heterogeneous treatment effects using a causal forest. This flex
     Estimated treatment effects by age of the household head. The model indicates that the treatment effect is positive but generally decreases with age.
   </figcaption>
 </figure>
-
-## Technical Highlights
-
-- Machine learning classification and hyperparameter tuning
-- Nested cross-validation and log-loss evaluation
-- Propensity-score estimation and common-support trimming
-- Causal forests and heterogeneous treatment-effect estimation
-- Data-driven analysis of treatment-effect moderators

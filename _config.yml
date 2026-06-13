@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-Canada"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Roberto Mendoza"
+title                    : "About"
 title_separator          : "-"
 name                     : &name "Roberto Mendoza"
 description              : &description "Roberto Mednoza's ML and DL portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -276,7 +276,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: false
       comment: true
   # _talks
   - scope:
