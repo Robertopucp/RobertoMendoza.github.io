@@ -3,7 +3,7 @@ title: "Working Paper"
 collection: publications
 category: working-papers
 permalink: /publication/working-paper
-excerpt: "This study examines the effectiveness of Fiscales Escolares, a school-based crime prevention program, in reducing crime near secondary schools and improving student outcomes."
+excerpt: "This study examines the effectiveness of Fiscales Escolares, a school-based crime prevention program, in reducing crime near secondary schools."
 date: 2026-01-01
 venue: "Working Paper"
 paperurl: "https://www.dropbox.com/scl/fi/2wtert0rm7huide7hnz7b/Paper_CrimeEconomics.pdf?rlkey=vmdmbmcf6p6v2f84ofqxa44l3&st=18y3otp2&dl=0"
