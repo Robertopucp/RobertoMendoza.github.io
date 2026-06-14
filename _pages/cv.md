@@ -13,4 +13,4 @@ redirect_from:
 
 You can view or download my resume in PDF:
 
-<a href="https://www.dropbox.com/scl/fi/leskc6ywv3s6d0s21skx4/Resume_Roberto_Mendoza.pdf?rlkey=bgycnofv25lr9x0f1n8208agu&amp;st=hk0b3zqq&amp;dl=0" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Resume</a>
+<a href="https://www.dropbox.com/scl/fi/e88nj7tv5d7tgmrt5dqjg/CV_Roberto_English_Industry.pdf?rlkey=jbdvy6nmblcqnvezrpfdimc53&st=jeccxrwc&dl=0" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Resume</a>
