@@ -36,3 +36,7 @@ I then estimate heterogeneous treatment effects using a causal forest. This flex
     Estimated treatment effects by age of the household head. The model indicates that the treatment effect is positive but generally decreases with age.
   </figcaption>
 </figure>
+
+## Project Repository
+
+<a href="https://github.com/Robertopucp/Propensity-Score-Causal-Forest" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
