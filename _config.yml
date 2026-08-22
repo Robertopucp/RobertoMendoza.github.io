@@ -30,7 +30,7 @@ author:
   # location         : "Earth"
   # employer         : "Red Brick University"
   uri              : # URL
-  email            : "rmendo04@student.ubc.ca" 
+  email            : "rmendoza.j316@gmail.com"
 
   # Academic websites
   academia         : # URL
@@ -86,6 +86,8 @@ author:
 publication_category:
   working-papers:
     title: 'Working Papers'
+  thesis:
+    title: 'Thesis'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews

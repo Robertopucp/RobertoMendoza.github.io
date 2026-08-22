@@ -37,3 +37,7 @@ The datasets were cleaned, transformed, and linked geographically to support int
     Power BI dashboard integrating county-level Zillow Home Value Index data with FEMA hurricane records. Users can select locations from the map or filters and inspect housing-value trends around major hurricane events.
   </figcaption>
 </figure>
+
+## Project Repository
+
+<a href="https://github.com/Robertopucp/Dashboard-Climate-Shock-Real-State" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
