@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "Resume"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -13,4 +13,4 @@ redirect_from:
 
 You can view or download my resume in PDF:
 
-<a href="https://www.dropbox.com/scl/fi/e88nj7tv5d7tgmrt5dqjg/CV_Roberto_English_Industry.pdf?rlkey=jbdvy6nmblcqnvezrpfdimc53&st=jeccxrwc&dl=0" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Resume</a>
+<a href="https://www.dropbox.com/scl/fi/rksy509p3rtvbdqqd4r4u/Resume_Roberto_Mendoza.pdf?rlkey=ffzzt36pi4qi5su5xktjbmzqp&st=1jyzwtqi&dl=0" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Resume</a>
