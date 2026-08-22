@@ -17,7 +17,7 @@ Geospatial joins were performed between a 1 km grid-cell shapefile and socioecon
 
 Daytime imagery was sourced from Landsat 8 Collection 2 Level 2, filtered to remove cloud, cloud-shadow, and snow-contaminated pixels, and downloaded per grid cell via the Earth Engine API. Only grid cells in urban zones are downloaded, since the poverty-mapping model targets urban 1 km cells.
 
-## CNN Pipeline
+## Deep Learning
 
 - **Image standardization:** Downloaded grid tiles come out at slightly irregular pixel dimensions, since a 1 km cell rarely aligns to an exact integer number of Landsat pixels. Tiles are resized to a fixed square shape via bilinear interpolation so every tile fed to the CNN is consistent.
 - **Train/validation/test splitting:** Splits are assigned by spatially clustering grid cells within the same district, rather than splitting rows at random, so neighboring (highly correlated) cells don't leak between splits. Poverty and income/expenditure get independent splits, since they have different missing-data patterns.
