@@ -1,6 +1,6 @@
 ---
-title: "Mining Expansion: Machine Learning and Heterogeneous Treatment Effects"
-excerpt: "A machine learning and causal inference framework for estimating exposure to mine expansion and uncovering heterogeneous treatment effects across households."
+title: "The Effect of El Niño 2017 on Firm Productivity"
+excerpt: "Master's thesis research applying causal inference and machine learning to measure how a large-scale climate shock affected firm-level productivity in Peru."
 collection: portfolio
 permalink: /portfolio/project-1
 ---
@@ -9,34 +9,23 @@ permalink: /portfolio/project-1
 
 ## Overview
 
-This project combines machine learning and causal inference to study the socioeconomic effects of mine expansion. I estimate each district's probability of being affected by the expansion using pre-treatment characteristics and then apply a causal forest to examine how treatment effects vary across households.
+Master's thesis research applying causal inference and machine learning to measure how a large-scale climate shock affected firm-level productivity in Peru. The project combines panel econometrics, supervised and unsupervised machine learning, and satellite remote sensing data.
 
-## Treatment Assignment Model
+## Abstract
 
-I train machine learning classifiers to predict the probability that a district is affected by mine expansion. Predictors include distance to the mine, the share of skilled workers, access to basic services, poverty rates, public expenditure, and other pre-treatment socioeconomic characteristics.
+Latin America's productivity growth has been historically low and stagnant. In Peru, the average TFP growth rate has been barely 0.1% over the last decade, raising concerns about the shocks that shape productivity. This thesis examines whether El Niño 2017, which brought intense rainfall and flooding to the Peruvian coast and severe drought to the southern Andes, reduced firm-level total factor productivity (TFP).
 
-Four classifiers are evaluated:
+Using firm panel data from 2012 to 2020 and geographic variation in precipitation anomalies, I estimate a two-way fixed-effects difference-in-differences model comparing firms in flood-prone districts (rainfall anomaly ≥ 60mm) to firms in districts with a mild or weak anomaly (0-30mm). El Niño 2017 reduced TFP by 12.1% to 13.6%, significant at the 1% level and robust to alternative productivity measures and machine-learning-based estimators. The short-run effect is concentrated in small firms and the commerce and services sectors, driven by a demand contraction and worse employee health, while manufacturing exhibits a persistent decline through 2019 due to infrastructure recovery. Affected firms also cut training expenditure and the share of college-educated employees. In the long run, El Niño 1998 is associated with lower firm-level labor productivity.
 
-- Kernel logistic regression with an RBF kernel
-- Random forest
-- Decision tree
-- Gradient boosting
+I also leverage remote sensing data, using nighttime light density at the district level as a proxy for economic activity, to examine the long-run effects of El Niño.
 
-I use nested cross-validation to prevent information leakage between hyperparameter tuning and model evaluation. The best-performing classifier is selected using the outer cross-validation log-loss. The resulting propensity scores are trimmed to the region of common support so that treated and control districts have comparable pre-treatment characteristics.
+## Key Techniques
 
-## Heterogeneous Treatment Effects
-
-I then estimate heterogeneous treatment effects using a causal forest. This flexible, data-driven method captures nonlinearities and interactions without requiring the sources of heterogeneity to be specified in advance. It also helps identify which household characteristics are most predictive of variation in the estimated treatment effect.
-
-## Treatment Effect by Age
-
-<figure>
-  <img src="{{ base_path }}/images/HTE_effect.png" alt="Estimated heterogeneous treatment effect of mine expansion by age of the household head">
-  <figcaption>
-    Estimated treatment effects by age of the household head. The model indicates that the treatment effect is positive but generally decreases with age.
-  </figcaption>
-</figure>
+- **Causal inference:** Double/Debiased Machine Learning
+- **Machine learning:** K-Means and hierarchical clustering, Support Vector Machines, Random Forest, Gradient Boosting, XGBoost, Lasso-based variable selection
+- **Model validation:** Nested cross-validation (grid search for hyperparameter tuning, held-out folds for performance evaluation)
+- **Geospatial analysis:** Shapefile processing, spatial joins, distance-to-boundary calculations, satellite nighttime-lights extraction via Google Earth Engine
 
 ## Project Repository
 
-<a href="https://github.com/Robertopucp/Propensity-Score-Causal-Forest" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+<a href="https://github.com/Robertopucp/MasterProgram_Research" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>

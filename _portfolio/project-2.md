@@ -1,42 +1,66 @@
 ---
-title: "Mapping Poverty with Satellite Imagery and Machine Learning"
-excerpt: "A CNN and transfer-learning framework using Landsat 8 daytime imagery to predict poverty rate, household income, and expenditure at the 1 km grid-cell level for Peru."
+title: "INDECOPI Chatbot: Virtual Assistant Against Banking Fraud"
+excerpt: "A Telegram and REST API virtual assistant that guides Peruvian banking consumers on their rights against financial fraud, powered by a RAG pipeline over real INDECOPI resolutions."
 collection: portfolio
 permalink: /portfolio/project-2
 ---
 
 {% include base_path %}
 
-## Description
+## Overview
 
-This project uses daytime satellite imagery from Google Earth Engine (Landsat 8) to predict socioeconomic indicators -- poverty rate, household income, and expenditure -- at the 1 km² grid-cell level for Peru, following the transfer-learning-for-poverty-mapping approach (Yeh et al.). A CNN extracts visual features from daytime imagery (built-up density, roads, roofing materials, vegetation, etc.), which are combined with Census/survey socioeconomic features to train a regression model per target variable.
+This project is a virtual assistant that guides users of the Peruvian banking system on their rights as consumers against financial fraud, based on real resolutions from INDECOPI (Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual, the Peruvian consumer protection authority). It is available as a Telegram bot ([@IndecopiChatbot](https://t.me/IndecopiChatbot)) and as a REST API.
 
-## Data Processing
+## Problem
 
-Geospatial joins were performed between a 1 km grid-cell shapefile and socioeconomic variables from the 2017 Census, including educational attainment, age distribution, employment status, and poverty rate at the census-tract ("manzana"/block) level. Household income and expenditure from the ENAHO household survey (2014-2017) were added via a spatial join on household GPS coordinates. Both are aggregated up to the 1 km grid level.
+Consumers affected by banking fraud in Peru often don't know their rights, which agency to contact, or what past cases show about how similar complaints were resolved. That information exists in INDECOPI's official resolutions, but those documents are long, technical, and hard for the public to search. This project turns that corpus into a conversational assistant that answers in plain language while grounding every answer in the underlying resolutions, and filters out sensitive personal data before it reaches the user.
 
-Daytime imagery was sourced from Landsat 8 Collection 2 Level 2, filtered to remove cloud, cloud-shadow, and snow-contaminated pixels, and downloaded per grid cell via the Earth Engine API. Only grid cells in urban zones are downloaded, since the poverty-mapping model targets urban 1 km cells.
+## RAG Architecture
 
-## Deep Learning
+The chatbot combines three response layers, applied in order of priority:
 
-- **Image standardization:** Downloaded grid tiles come out at slightly irregular pixel dimensions, since a 1 km cell rarely aligns to an exact integer number of Landsat pixels. Tiles are resized to a fixed square shape via bilinear interpolation so every tile fed to the CNN is consistent.
-- **Train/validation/test splitting:** Splits are assigned by spatially clustering grid cells within the same district, rather than splitting rows at random, so neighboring (highly correlated) cells don't leak between splits. Poverty and income/expenditure get independent splits, since they have different missing-data patterns.
-- **Feature preparation:** Standardized images are joined with the socioeconomic data (one target at a time: poverty, income, or expenditure), features and targets are median-imputed and standardized (fit only on the training split), and the data is written to an efficient training format.
-- **Model architecture:** A convolutional neural network with stacked convolution and pooling blocks processes the imagery, optionally combined with the socioeconomic feature vector, feeding into dense layers and a single regression output.
-- **Training:** A hyperparameter grid search (learning rate, L2 regularization, decay, filters, dropout) is run with experiment tracking and checkpointing, evaluating streaming R² on train, validation, and test sets.
-- **Evaluation and inference:** Trained models are scored on held-out data to report R² and true-vs-predicted values, and can also generate predictions on imagery from other years with no ground truth available.
+1. **FAQ layer:** the query is compared against a fixed bank of frequently asked questions about INDECOPI using embedding similarity. If the best match is above the threshold, it answers directly, without touching the resolutions or the LLM.
+2. **RAG layer (Retrieval Augmented Generation):** if there is no FAQ match, the system retrieves the most relevant passages from INDECOPI's final resolutions, indexed in a vector database.
+3. **LLM layer:** the retrieved context is passed to a language model, which generates the final answer in natural language and cites the source resolution.
 
-Each of the CNN pipeline steps above is run once per target variable (poverty, income, expenditure) -- a separate model is trained per variable, following the paper's design.
-
-## Satellite Image Example
+A security layer screens both the user's input and the model's output for forbidden words and sensitive content (names, national ID numbers, fine amounts) before any response is returned.
 
 <figure>
-  <img src="{{ base_path }}/images/day_time_lima.png" alt="Example of a daytime satellite image covering an urban area in Lima, Peru">
+  <img src="{{ base_path }}/images/rag_diagram.png" alt="RAG architecture of the INDECOPI chatbot: Telegram and API request flow through the FAQ, RAG, and LLM layers">
   <figcaption>
-    Example of the daytime satellite imagery used in the project. The CNN learns visual features from the urban form, road network, vegetation, density, and surface textures to support small-area poverty, income, and expenditure prediction.
+    Request flow: a message from Telegram or the API first passes an input security check, then the FAQ layer; if there is no FAQ match, it goes through the RAG retrieval and LLM generation layers, an output security check, and finally back to the user.
+  </figcaption>
+</figure>
+
+## Tech Stack
+
+| Component | Tool |
+|---|---|
+| LLM | Qwen3.5-9B, served via Hugging Face (OpenAI-compatible endpoint) |
+| Embeddings | OpenAI `text-embedding-3-small` |
+| Retrieval/integration framework | LangChain |
+| Vector database | FAISS |
+| Interaction channel | Telegram bot ([@IndecopiChatbot](https://t.me/IndecopiChatbot)) |
+| API | FastAPI |
+
+The knowledge base consists of 12 final INDECOPI resolutions on banking fraud complaints filed by individual consumers in Peru.
+
+## Screenshots
+
+<figure>
+  <img src="{{ base_path }}/images/Indecopi_web_2.png" alt="INDECOPI chatbot answering a question through the FAQ layer">
+  <figcaption>
+    A question answered directly by the FAQ layer, without invoking retrieval or the LLM.
+  </figcaption>
+</figure>
+
+<figure>
+  <img src="{{ base_path }}/images/Indecopi_web_4.png" alt="INDECOPI chatbot blocking a response that would have exposed sensitive data">
+  <figcaption>
+    Example of the security layer blocking a response, since the underlying resolutions contain sensitive data such as claimants' names, national ID numbers, and fine amounts.
   </figcaption>
 </figure>
 
 ## Project Repository
 
-<a href="https://github.com/Robertopucp/CNN-PovertyRate-DayTimeImage" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+<a href="https://github.com/Robertopucp/Chatbot-AIGenerative-BankingSystem" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
