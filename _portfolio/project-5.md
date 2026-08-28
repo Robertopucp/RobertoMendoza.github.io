@@ -1,6 +1,6 @@
 ---
-title: "The Effect of El Niño 2017 on Firm Productivity"
-excerpt: "Master's thesis research applying causal inference and machine learning to measure how a large-scale climate shock affected firm-level productivity in Peru."
+title: "Migratory regularisation and Local Economic Activity in Colombia"
+excerpt: "Local economic effects of large-scale Venezuelan regularisation into Colombia."
 collection: portfolio
 permalink: /portfolio/project-5
 ---
@@ -9,23 +9,26 @@ permalink: /portfolio/project-5
 
 ## Overview
 
-Master's thesis research applying causal inference and machine learning to measure how a large-scale climate shock affected firm-level productivity in Peru. The project combines panel econometrics, supervised and unsupervised machine learning, and satellite remote sensing data.
+This project examines the local economic effects of the large-scale Venezuelan regularisation wave into Colombia. Because conventional economic statistics may be unavailable at high spatial and temporal resolutions, I use non-conventional proxies derived from remote sensing data to measure changes in economic activity and land use.
 
-## Abstract
+The main outcomes include **Night Light Density (NLD)**, urban expansion, cropland cover, and CO2 emissions. Together, these measures provide complementary evidence on local economic activity, development patterns, and environmental change.
 
-Latin America's productivity growth has been historically low and stagnant. In Peru, the average TFP growth rate has been barely 0.1% over the last decade, raising concerns about the shocks that shape productivity. This thesis examines whether El Niño 2017, which brought intense rainfall and flooding to the Peruvian coast and severe drought to the southern Andes, reduced firm-level total factor productivity (TFP).
+## Data Engineering and Remote Sensing
 
-Using firm panel data from 2012 to 2020 and geographic variation in precipitation anomalies, I estimate a two-way fixed-effects difference-in-differences model comparing firms in flood-prone districts (rainfall anomaly ≥ 60mm) to firms in districts with a mild or weak anomaly (0-30mm). El Niño 2017 reduced TFP by 12.1% to 13.6%, significant at the 1% level and robust to alternative productivity measures and machine-learning-based estimators. The short-run effect is concentrated in small firms and the commerce and services sectors, driven by a demand contraction and worse employee health, while manufacturing exhibits a persistent decline through 2019 due to infrastructure recovery. Affected firms also cut training expenditure and the share of college-educated employees. In the long run, El Niño 1998 is associated with lower firm-level labor productivity.
+I developed an end-to-end geospatial data pipeline using **Python** and **Google Earth Engine**. The workflow retrieves, processes, harmonizes, and aggregates satellite-based indicators at the geographic level required for the empirical analysis.
 
-I also leverage remote sensing data, using nighttime light density at the district level as a proxy for economic activity, to examine the long-run effects of El Niño.
+## Event Study
 
-## Key Techniques
+I use an event-study design to trace changes in local economic activity before and after the policy-related treatment period. The specification makes it possible to inspect pre-treatment dynamics and evaluate how the estimated effect evolves over time.
 
-- **Causal inference:** Double/Debiased Machine Learning
-- **Machine learning:** K-Means and hierarchical clustering, Support Vector Machines, Random Forest, Gradient Boosting, XGBoost, Lasso-based variable selection
-- **Model validation:** Nested cross-validation (grid search for hyperparameter tuning, held-out folds for performance evaluation)
-- **Geospatial analysis:** Shapefile processing, spatial joins, distance-to-boundary calculations, satellite nighttime-lights extraction via Google Earth Engine
+<figure>
+  <img src="{{ base_path }}/images/Event_study.png" alt="Event-study estimates of the effect of Venezuelan migration on Night Light Density in Colombia">
+  <figcaption>
+    Event-study estimates for Night Light Density. The vertical red line marks the treatment period in 2018. Estimates become positive from 2019 onward, indicating an increase in satellite-observed economic activity after treatment. Points represent annual estimates and error bars show their uncertainty.
+  </figcaption>
+</figure>
 
-## Project Repository
+## Main Finding
 
-<a href="https://github.com/Robertopucp/MasterProgram_Research" class="btn btn--primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+The post-treatment estimates indicate an increase in Night Light Density in areas affected by the migration-related policy. This pattern is consistent with an expansion in local economic activity, as captured by nighttime satellite imagery.
+
