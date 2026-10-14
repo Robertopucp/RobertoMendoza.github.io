@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-M.A. Economist at the University of British Columbia and B.A. in Economics from the Pontifical Catholic University of Peru (PUCP), specializing in causal inference, applied econometrics, and data science.
+M.A. Economist at the University of British Columbia and B.A. in Economics from the Pontifical Catholic University of Peru (PUCP), specializing in causal inference, empirical industrial organization, data science, applied econometrics, generative AI, and remote sensing data.
 
 My work focuses on combining economic theory with modern machine learning methods. I have experience developing end-to-end Python pipelines for ETL processes, geospatial analytics, and extracting economic insights from remote sensing data. In addition to research, I have served as a teaching assistant for quantitative courses including econometrics, applied statistics, R and Python programming, and microeconomics.
 
